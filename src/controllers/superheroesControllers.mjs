@@ -19,7 +19,9 @@ export async function obtenerSuperheroePorIdController(req, res) {
         if (!superheroe) {
             return res.status(404).send({ mensaje: 'Superhéroe no encontrado' });
         }
-        res.status(200).json(superheroe); // Respuesta con el superhéroe en formato JSON
+
+        const superheroeFormateado = renderizarSuperheroe(superheroe);
+        res.status(200).json(superheroeFormateado); 
     } catch (error) {
         res.status(500).send({ mensaje: 'Error al obtener el superhéroe', error: error.message });
     }
@@ -29,7 +31,9 @@ export async function obtenerSuperheroePorIdController(req, res) {
 export async function obtenerTodosLosSuperheroesController(req, res) {
     try {
         const superheroes = await obtenerTodosLosSuperheroes();
-        res.status(200).json(superheroes); // Respuesta con la lista de superhéroes en formato JSON
+
+        const superheroesFormateados = renderizarListaSuperheroes(superheroes);
+        res.status(200).json(superheroesFormateados); 
     } catch (error) {
         res.status(500).send({ mensaje: 'Error al obtener los superhéroes', error: error.message });
     }
@@ -43,7 +47,9 @@ export async function buscarSuperheroesPorAtributoController(req, res) {
         if (superheroes.length === 0) {
             return res.status(404).send({ mensaje: 'No se encontraron superhéroes con ese atributo' });
         }
-        res.status(200).json(superheroes); // Respuesta con los superhéroes encontrados en formato JSON
+
+        const superheroesFormateados = renderizarListaSuperheroes(superheroes);
+        res.status(200).json(superheroesFormateados);
     } catch (error) {
         res.status(500).send({ mensaje: 'Error al buscar los superhéroes', error: error.message });
     }
@@ -56,10 +62,12 @@ export async function obtenerSuperheroesMayoresDe30Controller(req, res) {
         if (superheroes.length === 0) {
             return res.status(404).send({ mensaje: 'No se encontraron superhéroes mayores de 30 años' });
         }
-        res.status(200).json(superheroes); // Respuesta con los superhéroes mayores de 30 en formato JSON
+        const superheroesFormateados = renderizarListaSuperheroes(superheroes);
+        res.status(200).json(superheroesFormateados); 
     } catch (error) {
         res.status(500).send({ mensaje: 'Error al obtener superhéroes mayores de 30', error: error.message });
     }
 }
+
 
 

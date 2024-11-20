@@ -3,13 +3,8 @@ import mongoose from 'mongoose';
 // Funcion para conectar a la base de datos de MongoDB
 export async function connectDB() {
   try {
-    await mongoose.connect(
-      'mongodb+srv://Grupo-07:grupo07@cursadanodejs.ls9ii.mongodb.net/Node-js',
-      {
-        useNewUrlParser: true,  
-        useUnifiedTopology: true 
-      }
-    );
+      const url = 'mongodb+srv://Grupo-07:grupo07@cursadanodejs.ls9ii.mongodb.net/Node-js';
+      await mongoose.connect(url, {});
 
     // Si la conexion es exitosa:
     console.log('Conexión exitosa a MongoDB');
